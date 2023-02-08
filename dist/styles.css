@@ -1,0 +1,25 @@
+:root {
+    --color1:brown;
+    --color2:black;
+    --color3:white;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 15vh;
+    padding: 0;
+}
+
+#cardbox{
+    display: flex;
+    margin: 5%;
+    flex-wrap: wrap;
+}

@@ -1,11 +1,14 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
+const fs = require('./dist');
+const generateHTML = require("./src/generateHTML");
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 
-// Constants/variables/objects 
+
+// ------ OBJECTS ------ 
+
 const employeeQuestions = [
     {
         type: 'input',
@@ -92,19 +95,23 @@ const internQuestions = [
 const menuOptions = [
     {
         type: 'list',
-        message: 'Name:',
+        message: 'Role:',
         name: 'name',
-        choices: ['Engineer','Intern','Done']
+        choices: ['Engineer','Intern','Exit']
     },
 ];
 
 // Creates a directory of all added employees
 var employees = [];
 
-// on startup, finds the information for the team manager
+
+// ------ FUNCTIONS -------
+
+// on startup, runs the teamManager() function.
 teamManager();
 
-// Functions
+// teamManager() runs inquirer and find the name, id, 
+// email, and office number of the team manager
 function teamManager() {
     inquirer
     .prompt(managerQuestions)
@@ -116,8 +123,10 @@ function teamManager() {
     
 };
 
+// menu() runs inquirer and allows the user to select 
+// a new employee and their role.
 function menu(){
-    console.log(employees)
+    console.log("Select an employee to add!")
     inquirer
     .prompt(menuOptions)
     .then((data) => {
@@ -132,6 +141,9 @@ function menu(){
     })
 }
 
+// addEmployee() works for both the Engineer and the
+// Intern roles. it runs inquirer and sets the info for 
+// each new role created.
 function addEmployee(questions,employee){
     inquirer
     .prompt(questions)
@@ -150,6 +162,15 @@ function addEmployee(questions,employee){
     })
 }
 
-function writeFile(){
-    console.log("Done!")
+// writeFile() generates the html file based on the information
+// provided.
+function writeFile(data){
+    const html = generateHTML(data)
+    fs.writeFile("TeamInfo.html",html, (err) => {
+        if (err) {
+            console.error(err)
+        } else {
+            console.log('Success: README.md File Generated!')
+        }
+    })
 }
