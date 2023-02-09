@@ -1,30 +1,43 @@
-const cards = function cardGenerator(data){
-    
-    //for loop
-    switch(role){
-        case 'Engineer':
-            return roleSpecific = 'GitHub: https://github.com/'+ data.github;
-        case 'Intern':
-            return roleSpecific = 'School:' + data.school;
-    }
+function cardGenerator(data){ //const cards = 
+    let cards = "";
+    for (let i=0;i<data.length;i++){
+        const name = data[i].getName();
+        const id = data[i].getId();
+        const email = data[i].getEmail();
+        const role = data[i].getRole();
+        let roleSpecific = '';
+        switch(role){
+            case 'Manager':
+                const officenumber = data[i].officeNumber;
+                roleSpecific = `Office Number: ${officenumber}`;
+                break
+            case 'Engineer':
+                const github = data[i].getGitHub();
+                roleSpecific = `GitHub: <a href="https://github.com/${github}" class="card-link">' ${github}`;
+                break
+            case 'Intern':
+                const school = data[i].getSchool();
+                roleSpecific = `School: ${school}`;
+                break
+        }
 
-   return `<div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">${data.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${data.role}</h6>
+        cards = cards + `<div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:${data.id}</li>
-                <li class="list-group-item">Email: <a href="#" class="card-link">${data.email}</a></li>
-                <li class="list-group-item">${roleSpecific}</li>
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email: <a href="#" class="card-link"> ${email}</a></li>
+            <li class="list-group-item">${roleSpecific}</li>
             </ul>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-  </div>`
+            </div>
+            </div>`
+    }
+return cards
 }
 
 function generateHTML(data) {
-
+    const cards = cardGenerator(data)
      return `
 <!DOCTYPE html>
 <html lang="en">
@@ -43,18 +56,7 @@ function generateHTML(data) {
         <h1>My Team</h1>
     </header>
     <main>
-        <div id="cardbox">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">${data.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${data.role}</h6>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID:${data.id}</li>
-                        <li class="list-group-item">Email:${data.email}</li>
-                        <li class="list-group-item">ID:${roleSpecific}</li>
-                    </ul>
-                </div>
-            </div>    
+        <div id="cardbox">   
             ${cards}
         </div>
 
@@ -63,6 +65,16 @@ function generateHTML(data) {
 </html>
    `;
    }
-   
+//    <div class="card" style="width: 18rem;">
+//    <div class="card-body">
+//        <h5 class="card-title">${data.name}</h5>
+//        <h6 class="card-subtitle mb-2 text-muted">${data.role}</h6>
+//        <ul class="list-group list-group-flush">
+//            <li class="list-group-item">ID:${data.id}</li>
+//            <li class="list-group-item">Email:${data.email}</li>
+//            <li class="list-group-item">ID:${roleSpecific}</li>
+//        </ul>
+//    </div>
+// </div> 
    module.exports = generateHTML;
    

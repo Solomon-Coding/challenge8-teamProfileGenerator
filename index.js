@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
-const fs = require('./dist');
+const fs = require('fs');
 const generateHTML = require("./src/generateHTML");
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
@@ -130,13 +129,12 @@ function menu(){
     inquirer
     .prompt(menuOptions)
     .then((data) => {
-        console.log(data)
         if(data.name=='Engineer'){
             addEmployee(engineerQuestions,'Engineer')
         } else if (data.name=='Intern'){
             addEmployee(internQuestions,'Intern')
         } else {
-            writeFile()
+            writeToFile(employees)
         }
     })
 }
@@ -157,16 +155,16 @@ function addEmployee(questions,employee){
             employees.push(intern)
             menu()
         } else {
-            console.log('error')
+            console.log('Error see function "addEmployee()" on line 147')
         }
     })
 }
 
 // writeFile() generates the html file based on the information
 // provided.
-function writeFile(data){
+function writeToFile(data){
     const html = generateHTML(data)
-    fs.writeFile("TeamInfo.html",html, (err) => {
+    fs.writeFile("./dist/TeamInfo.html",html, (err) => {
         if (err) {
             console.error(err)
         } else {
