@@ -3,7 +3,7 @@ const Employee = require('../lib/Employee');
 describe('Employee', () => {
 
     describe("Initialization", () => {
-        it("When calling 'getRole()' the value of 'Employee' should be returned", () => {
+        it("Sets the class properties", () => {
             const employee = new Employee("name","id","email");
             expect(employee.name).toEqual("name");
             expect(employee.id).toEqual("id");
