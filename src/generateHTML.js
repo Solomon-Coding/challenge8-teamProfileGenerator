@@ -18,7 +18,7 @@ function employeeSpecificRoles(role,data){
         return `Office Number: ${officenumber}`;
     } else if (role == 'Engineer'){
         const github = data.getGitHub();
-        return  `GitHub: <a href="https://github.com/${github}" class="card-link"> ${github}`;
+        return  `GitHub: <a href="https://github.com/${github}" class="card-link"></a> ${github}`;
     } else if (role == 'Intern') {
         const school = data.getSchool();
         return `School: ${school}`;
