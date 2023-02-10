@@ -1,3 +1,6 @@
+// cardGenerator() loops through each of the employees and
+// gets each employees name, id, email, job role, and a 
+// attribute unique to their role.
 function cardGenerator(data){
     let cards = "";
     for (let i=0;i<data.length;i++){
@@ -11,6 +14,8 @@ function cardGenerator(data){
 return cards
 }
 
+// employeeSpecificRoles() finds the unique detail for each 
+// of the three roles.
 function employeeSpecificRoles(role,data){
     if (role == 'Manager'){
         const officenumber = data.officeNumber;
@@ -26,6 +31,8 @@ function employeeSpecificRoles(role,data){
     }
 }
 
+// cardsFunction() generates the bootstrap cards and sets 
+// the relevant information for each of the employees.
 function cardsFunction(name,role,id,email,roleSpecific){
     return `<div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -40,6 +47,8 @@ function cardsFunction(name,role,id,email,roleSpecific){
             </div>`;
 }
 
+// generateHTML() generates the code for the html script and
+// returns it to the index.js script
 function generateHTML(data) {
     const cards = cardGenerator(data)
      return `

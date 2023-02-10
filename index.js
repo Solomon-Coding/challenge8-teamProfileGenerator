@@ -8,23 +8,6 @@ const Engineer = require("./lib/Engineer");
 
 // ------ OBJECTS ------ 
 
-const employeeQuestions = [
-    {
-        type: 'input',
-        message: 'Name:',
-        name: 'name',
-    },
-    {
-        type: 'input',
-        message: 'ID',
-        name: 'id',
-    },
-    {
-        type: 'input',
-        message: 'Email:',
-        name: 'email',
-    },
-];
 const managerQuestions = [
     {
         type: 'input',
