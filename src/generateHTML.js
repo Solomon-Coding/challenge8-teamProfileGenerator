@@ -1,39 +1,49 @@
-function cardGenerator(data){ //const cards = 
+function cardGenerator(data){
     let cards = "";
     for (let i=0;i<data.length;i++){
         const name = data[i].getName();
         const id = data[i].getId();
         const email = data[i].getEmail();
         const role = data[i].getRole();
-        let roleSpecific = '';
-        switch(role){
-            case 'Manager':
-                const officenumber = data[i].officeNumber;
-                roleSpecific = `Office Number: ${officenumber}`;
-                break
-            case 'Engineer':
-                const github = data[i].getGitHub();
-                roleSpecific = `GitHub: <a href="https://github.com/${github}" class="card-link">' ${github}`;
-                break
-            case 'Intern':
-                const school = data[i].getSchool();
-                roleSpecific = `School: ${school}`;
-                break
-        }
-
-        cards = cards + `<div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">${name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${id}</li>
-            <li class="list-group-item">Email: <a href="#" class="card-link"> ${email}</a></li>
-            <li class="list-group-item">${roleSpecific}</li>
-            </ul>
-            </div>
-            </div>`
+        const roleSpecific = employeeSpecificRoles(role,data[i])
+        cards += cardsFunction(name,role,id,email,roleSpecific)
     }
 return cards
+}
+
+function employeeSpecificRoles(role,data){
+    console.log(data)
+    if (role == 'Manager'){
+        const officenumber = data.officeNumber;
+        return `Office Number: ${officenumber}`;
+    } else if (role == 'Engineer'){
+        const github = data.getGitHub();
+        return  `GitHub: <a href="https://github.com/${github}" class="card-link"> ${github}`;
+    } else if (role == 'Intern') {
+        const school = data.getSchool();
+        return `School: ${school}`;
+    } else {
+        console.log("Error! No condition has been met. generateHTML.js (ln 25)");
+    }
+}
+
+function cardsFunction(name,role,id,email,roleSpecific){
+    console.log(name)
+    console.log(role)
+    console.log(id)
+    console.log(email)
+    console.log(roleSpecific)
+    return `<div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${id}</li>
+                        <li class="list-group-item">Email: <a href="#" class="card-link"> ${email}</a></li>
+                        <li class="list-group-item">${roleSpecific}</li>
+                    </ul>
+                </div>
+            </div>`;
 }
 
 function generateHTML(data) {
@@ -65,16 +75,6 @@ function generateHTML(data) {
 </html>
    `;
    }
-//    <div class="card" style="width: 18rem;">
-//    <div class="card-body">
-//        <h5 class="card-title">${data.name}</h5>
-//        <h6 class="card-subtitle mb-2 text-muted">${data.role}</h6>
-//        <ul class="list-group list-group-flush">
-//            <li class="list-group-item">ID:${data.id}</li>
-//            <li class="list-group-item">Email:${data.email}</li>
-//            <li class="list-group-item">ID:${roleSpecific}</li>
-//        </ul>
-//    </div>
-// </div> 
-   module.exports = generateHTML;
+
+module.exports = generateHTML;
    

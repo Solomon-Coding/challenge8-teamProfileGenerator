@@ -1,4 +1,27 @@
 {
+  "name": "challenge8-teamprofilegenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solomon-Coding/challenge8-teamProfileGenerator.git"
+  },
+  "author": "Solomon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Solomon-Coding/challenge8-teamProfileGenerator/issues"
+  },
+  "homepage": "https://github.com/Solomon-Coding/challenge8-teamProfileGenerator#readme",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  },
   "dependencies": {
     "inquirer": "^8.2.4"
   }
