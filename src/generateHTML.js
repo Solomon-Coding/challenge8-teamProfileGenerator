@@ -12,7 +12,6 @@ return cards
 }
 
 function employeeSpecificRoles(role,data){
-    console.log(data)
     if (role == 'Manager'){
         const officenumber = data.officeNumber;
         return `Office Number: ${officenumber}`;
@@ -28,11 +27,6 @@ function employeeSpecificRoles(role,data){
 }
 
 function cardsFunction(name,role,id,email,roleSpecific){
-    console.log(name)
-    console.log(role)
-    console.log(id)
-    console.log(email)
-    console.log(roleSpecific)
     return `<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${name}</h5>
